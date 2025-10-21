@@ -1,4 +1,4 @@
-# Streamlit App Analisa Pasang Surut dengan Prediksi Tanggal di Bawah Latitude
+a# Streamlit App Analisa Pasang Surut dengan Prediksi Tanggal di Bawah Latitude
 
 import streamlit as st
 import pandas as pd
@@ -240,5 +240,6 @@ if uploaded_file is not None and run_analysis:
 
 # Tanda tangan
 st.markdown("---")
-st.markdown("**by : Tri Arwadi modified ChatGPT and Blackbox**") 
+st.markdown("**by : Segara GIS**") 
+
 
