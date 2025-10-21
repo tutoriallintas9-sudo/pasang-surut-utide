@@ -5,6 +5,3 @@ matplotlib
 utide
 scikit-learn
 openpyxl
-math
-io
-zipfile
