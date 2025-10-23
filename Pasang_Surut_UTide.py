@@ -243,11 +243,14 @@ if uploaded_file is not None and run_analysis:
     st.download_button("📅 Unduh Data Prediksi", df_prediksi.to_csv(index=False), file_name="Prediksi_Pasang.csv", mime="text/csv")
 
 # Tanda tangan
-st.markdown("---")
-st.markdown(
-    "<p style='text-align:center; color:#FFA500; font-weight:bold;'>by : Segara <span style='color:#FF7F00;'>GIS</span></p>",
-    unsafe_allow_html=True
-)
+<h2 style="display:flex;align-items:center;gap:6px;">
+  <img src="data:image/x-icon;base64,AAABAAEAMDAAAAEAIACoJQAAFgAAACgAAAAwAAAAYAAAAAEAIAAAAAAAgCUAAAAAAAAAAAAAAAAAAAAAAAD+/v7//v7+..." 
+       alt="Logo Segara GIS" 
+       style="width:20px;height:20px;">
+  Segara GIS
+</h2>
+
+
 
 
 
