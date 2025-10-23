@@ -14,7 +14,7 @@ import zipfile
 st.set_page_config(page_title="Aplikasi Analisa Pasang Surut", page_icon="🌊")
 st.image(
     "https://blogger.googleusercontent.com/img/a/AVvXsEgNSHUPAWW3jVgULWuvcgEDRIWYFS6P22VHyAOzGzCoRyFFVWau9sl3bZlumjahc0c6foKUvWfPpYiCHugPw9dric5xp8X92nnrqhoJuwqiitGdOEC-BOKte2mu3KnvnEr9TZLb7uvEYJPNLZYpLCBpqeblJlU-jLZgMn4n59LXlBfan3N93VJEBrNjAHQ=s1600",
-    use_container_width=True,   # agar menyesuaikan lebar halaman
+    use_container_width=50px,   # agar menyesuaikan lebar halaman
     caption="Analisa Pasang Surut - SegaraGIS"  # opsional
 )
 st.title("Aplikasi Analisa Pasang Surut")
@@ -246,6 +246,7 @@ if uploaded_file is not None and run_analysis:
 # Tanda tangan
 st.markdown("---")
 st.markdown("**by : Segara GIS**") 
+
 
 
 
