@@ -244,7 +244,12 @@ if uploaded_file is not None and run_analysis:
 
 # Tanda tangan
 st.markdown("---")
-st.markdown("**by : Segara GIS**") 
+st.markdown(
+    "<p style='text-align:center; color:#FFA500; font-weight:bold;'>by : Segara <span style='color:#FF7F00;'>GIS</span></p>",
+    unsafe_allow_html=True
+)
+
+
 
 
 
