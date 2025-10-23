@@ -243,12 +243,15 @@ if uploaded_file is not None and run_analysis:
     st.download_button("📅 Unduh Data Prediksi", df_prediksi.to_csv(index=False), file_name="Prediksi_Pasang.csv", mime="text/csv")
 
 # Tanda tangan
-<h2 style="display:flex;align-items:center;gap:6px;">
-  <img src="data:image/x-icon;base64,AAABAAEAMDAAAAEAIACoJQAAFgAAACgAAAAwAAAAYAAAAAEAIAAAAAAAgCUAAAAAAAAAAAAAAAAAAAAAAAD+/v7//v7+..." 
+st.markdown("""
+<h2 style="display:flex;align-items:center;gap:6px; color:#ff9900;">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgNSHUPAWW3jVgULWuvcgEDRIWYFS6P22VHyAOzGzCoRyFFVWau9sl3bZlumjahc0c6foKUvWfPpYiCHugPw9dric5xp8X92nnrqhoJuwqiitGdOEC-BOKte2mu3KnvnEr9TZLb7uvEYJPNLZYpLCBpqeblJlU-jLZgMn4n59LXlBfan3N93VJEBrNjAHQ=s1600" 
        alt="Logo Segara GIS" 
        style="width:20px;height:20px;">
   Segara GIS
 </h2>
+""", unsafe_allow_html=True)
+
 
 
 
