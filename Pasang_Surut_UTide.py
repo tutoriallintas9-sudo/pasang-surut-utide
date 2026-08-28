@@ -11,8 +11,8 @@ from datetime import datetime
 import io
 import zipfile
 
-st.set_page_config(page_title="Analisa Pasang Surut - UTIDE")
-st.title("Analisa Pasang Surut - UTIDE")
+st.set_page_config(page_title="Analisa Pasang Surut" - UTIDE)
+st.title("Aplikasi Analisa Pasang Surut")
 
 st.header("1. Unggah Data Pasang Surut")
 st.markdown("""
@@ -27,7 +27,7 @@ uploaded_file = st.file_uploader("Pilih file Excel", type=["xlsx"])
 latitude = st.number_input("Masukkan nilai latitude lokasi pengamatan (dalam derajat desimal):", 
                            min_value=-90.0, max_value=90.0, value=0.000000, format="%.6f")
 
-st.markdown("###Periode & Interval Prediksi")
+st.markdown("### Periode dan Interval Prediksi Pasang Surut")
 start_pred = st.date_input("Tanggal Mulai", datetime(2025, 1, 1))
 end_pred = st.date_input("Tanggal Akhir", datetime(2025, 6, 30))
 
@@ -75,7 +75,7 @@ if uploaded_file is not None and run_analysis:
         'Phase CI [°]': decompose_utide['g_ci']
     })
 
-    st.header("3. Komponen Harmonik")
+    st.header("3. Tabel Komponen Harmonik")
     st.dataframe(DatFrame_UTide.style.format({
         'Freq [cph]': '{:.4f}',
         'Amplitude [m]': '{:.4f}',
@@ -88,14 +88,14 @@ if uploaded_file is not None and run_analysis:
     amp = lambda x: decompose_utide['A'][decompose_utide['name'] == x][0] if x in decompose_utide['name'] else 0
     M2, S2, N2, K1, O1, P1, K2, M4, MS4 = [amp(x) for x in ['M2','S2', 'N2', 'K1','O1','P1','K2','M4','MS4']]
 
-     HWS = MSL + M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2
-     LWS = MSL - (M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2)
-     MHWS = MSL + M2 + S2
-     MLWS = MSL - (M2 + S2)
-     MHWL = MSL + M2 + K1 + O1
-     MLWL = MSL - (M2 + K1 + O1)
-     HHWL = MSL + M2 + S2 + K1 + O1 + P1 + K2
-     LLWL = MSL - (M2 + S2 + K1 + O1 + P1 + K2)
+    HWS = MSL + M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2
+    LWS = MSL - (M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2)
+    MHWS = MSL + M2 + S2
+    MLWS = MSL - (M2 + S2)
+    MHWL = MSL + M2 + K1 + O1
+    MLWL = MSL - (M2 + K1 + O1)
+    HHWL = MSL + M2 + S2 + K1 + O1 + P1 + K2
+    LLWL = MSL - (M2 + S2 + K1 + O1 + P1 + K2)
     Tunggang_Pasang = HWS - LWS
     Formzahl = (K1 + O1) / (M2 + S2) if (M2 + S2) != 0 else 0
 
@@ -291,9 +291,9 @@ if uploaded_file is not None and run_analysis:
 
     st.download_button("📄 Unduh Komponen Harmonik", DatFrame_UTide.to_csv(index=False), file_name="Komponen_Harmonik.csv", mime="text/csv")
     st.download_button("📄 Unduh Elevasi Penting", df_elevasi.to_csv(index=False), file_name="Elevasi_Penting.csv", mime="text/csv")
-    st.download_button("🌊 Unduh Data Prediksi", df_prediksi.to_csv(index=False), file_name="Prediksi_Pasang.csv", mime="text/csv")
+    st.download_button("📅 Unduh Data Prediksi", df_prediksi.to_csv(index=False), file_name="Prediksi_Pasang.csv", mime="text/csv")
 
 # Tanda tangan
 st.markdown("---")
-st.markdown("**by : SEGARAGIS**") 
+st.markdown("**by : Tri Arwadi modified ChatGPT and Blackbox**") 
 
