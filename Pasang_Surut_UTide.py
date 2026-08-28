@@ -75,15 +75,21 @@ if uploaded_file is not None and run_analysis:
         'Phase CI [°]': decompose_utide['g_ci']
     })
 
-    st.header("3. Tabel Komponen Harmonik")
+     st.header("3. Tabel Komponen Harmonik")
+
     st.dataframe(DatFrame_UTide.style.format({
         'Freq [cph]': '{:.4f}',
         'Amplitude [m]': '{:.4f}',
         'Amp CI [m]': '{:.4f}',
         'Phase [°]': '{:.4f}',
         'Phase CI [°]': '{:.4f}'
-    }))  
-def get_amplitude(name):
+    }))
+
+    # =========================================================
+    # PERHITUNGAN FORMZAHL
+    # =========================================================
+
+    def get_amplitude(name):
         idx = np.where(decompose_utide['name'] == name)[0]
         return decompose_utide['A'][idx[0]] if len(idx) > 0 else 0.0
 
@@ -93,6 +99,8 @@ def get_amplitude(name):
     O1 = get_amplitude('O1')
 
     Formzahl = (K1 + O1) / (M2 + S2) if (M2 + S2) != 0 else 0.0
+
+    # Klasifikasi pasang surut
     if Formzahl > 3.0:
         jenis_pasang_surut = "Pasang Surut Harian Tunggal (Diurnal)"
     elif 1.5 < Formzahl <= 3.0:
@@ -102,25 +110,67 @@ def get_amplitude(name):
     else:
         jenis_pasang_surut = "Pasang Surut Harian Ganda (Semidiurnal)"
 
+    # Grafik Formzahl
     fig_formzahl, ax_formzahl = plt.subplots(figsize=(6, 4))
-    ax_formzahl.bar(["Formzahl"], [Formzahl], color='orange')
-    ax_formzahl.set_ylim(0, max(Formzahl + 1, 4))
-    ax_formzahl.axhline(3.0, color='red', linestyle='--', label='Diurnal')
-    ax_formzahl.axhline(1.5, color='green', linestyle='--', label='Mixed-Diurnal')
-    ax_formzahl.axhline(0.25, color='blue', linestyle='--', label='Mixed-Semidiurnal')
+
+    ax_formzahl.bar(
+        ["Formzahl"],
+        [Formzahl],
+        color='orange'
+    )
+
+    ax_formzahl.set_ylim(
+        0,
+        max(Formzahl + 1, 4)
+    )
+
+    ax_formzahl.axhline(
+        3.0,
+        color='red',
+        linestyle='--',
+        label='Diurnal'
+    )
+
+    ax_formzahl.axhline(
+        1.5,
+        color='green',
+        linestyle='--',
+        label='Mixed-Diurnal'
+    )
+
+    ax_formzahl.axhline(
+        0.25,
+        color='blue',
+        linestyle='--',
+        label='Mixed-Semidiurnal'
+    )
+
     ax_formzahl.set_ylabel("Nilai Formzahl")
     ax_formzahl.legend()
-    ax_formzahl.text(0, Formzahl + 0.1, f"{Formzahl:.4f}", ha='center', color='blue', fontsize=12)
+
+    ax_formzahl.text(
+        0,
+        Formzahl + 0.1,
+        f"{Formzahl:.4f}",
+        ha='center',
+        color='blue',
+        fontsize=12
+    )
 
     st.header("4. Visualisasi Formzahl dan Klasifikasi Pasang Surut")
+
     st.pyplot(fig_formzahl)
-    st.markdown(f"**Jenis Pasang Surut:** {jenis_pasang_surut}")
+
+    st.markdown(
+        f"**Jenis Pasang Surut:** {jenis_pasang_surut}"
+    )
+
     st.markdown("""
     **Kategori Formzahl (F):**
 
-    - F ≤ 0.25 : Pasang surut harian ganda *(Semidiurnal)*  
-    - 0.25 < F ≤ 1.50 : Pasang surut campuran condong ke harian ganda *(Mixed, Predominantly Semidiurnal)*  
-    - 1.50 < F ≤ 3.00 : Pasang surut campuran condong ke harian tunggal *(Mixed, Predominantly Diurnal)*  
+    - F ≤ 0.25 : Pasang surut harian ganda *(Semidiurnal)*
+    - 0.25 < F ≤ 1.50 : Pasang surut campuran condong ke harian ganda *(Mixed, Predominantly Semidiurnal)*
+    - 1.50 < F ≤ 3.00 : Pasang surut campuran condong ke harian tunggal *(Mixed, Predominantly Diurnal)*
     - F > 3.00 : Pasang surut harian tunggal *(Diurnal)*
     """)
 
