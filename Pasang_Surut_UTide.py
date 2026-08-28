@@ -108,7 +108,16 @@ if uploaded_file is not None and run_analysis:
     st.markdown(f"**Jenis Pasang Surut:** {jenis_pasang_surut}")
     st.markdown("""
     **Kategori Formzahl (F):**
-
+    def get_amplitude(name):
+            idx = np.where(decompose_utide['name'] == name)[0]
+            return decompose_utide['A'][idx[0]] if len(idx) > 0 else 0.0
+    
+        M2 = get_amplitude('M2')
+        S2 = get_amplitude('S2')
+        K1 = get_amplitude('K1')
+        O1 = get_amplitude('O1')
+    
+        Formzahl = (K1 + O1) / (M2 + S2) if (M2 + S2) != 0 else 0.0
     - F ≤ 0.25 : Pasang surut harian ganda *(Semidiurnal)*  
     - 0.25 < F ≤ 1.50 : Pasang surut campuran condong ke harian ganda *(Mixed, Predominantly Semidiurnal)*  
     - 1.50 < F ≤ 3.00 : Pasang surut campuran condong ke harian tunggal *(Mixed, Predominantly Diurnal)*  
