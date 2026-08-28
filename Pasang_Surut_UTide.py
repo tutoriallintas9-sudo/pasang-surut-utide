@@ -84,8 +84,10 @@ if uploaded_file is not None and run_analysis:
         'Phase CI [°]': '{:.4f}'
     }))
 
-amp = lambda x: decompose_utide['A'][decompose_utide['name'] == x][0] if x in decompose_utide['name'] else 0
+    MSL = np.mean(sensor)
+    amp = lambda x: decompose_utide['A'][decompose_utide['name'] == x][0] if x in decompose_utide['name'] else 0
     M2, S2, N2, K1, O1, P1, K2, M4, MS4 = [amp(x) for x in ['M2','S2', 'N2', 'K1','O1','P1','K2','M4','MS4']]
+  
 def get_amplitude(name):
         idx = np.where(decompose_utide['name'] == name)[0]
         return decompose_utide['A'][idx[0]] if len(idx) > 0 else 0.0
