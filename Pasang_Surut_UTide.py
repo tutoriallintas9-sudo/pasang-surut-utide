@@ -32,9 +32,9 @@ start_pred = st.date_input("Tanggal Mulai", datetime(2025, 1, 1))
 end_pred = st.date_input("Tanggal Akhir", datetime(2025, 6, 30))
 
 interval_options = {
-    "6 Jam": "6H",
-    "3 Jam": "3H",
-    "1 Jam": "1H",
+    "6 Jam": "6h",
+    "3 Jam": "3h",
+    "1 Jam": "1h",
     "30 Menit": "30min",
     "15 Menit": "15min"
 }
