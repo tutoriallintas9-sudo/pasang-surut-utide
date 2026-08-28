@@ -11,7 +11,7 @@ from datetime import datetime
 import io
 import zipfile
 
-st.set_page_config(page_title="Analisa Pasang Surut" - UTIDE)
+st.set_page_config(page_title="Analisa Pasang Surut - UTIDE")
 st.title("Aplikasi Analisa Pasang Surut")
 
 st.header("1. Unggah Data Pasang Surut")
