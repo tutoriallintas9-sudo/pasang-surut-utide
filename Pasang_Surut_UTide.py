@@ -88,16 +88,16 @@ if uploaded_file is not None and run_analysis:
     amp = lambda x: decompose_utide['A'][decompose_utide['name'] == x][0] if x in decompose_utide['name'] else 0
     M2, S2, N2, K1, O1, P1, K2, M4, MS4 = [amp(x) for x in ['M2','S2', 'N2', 'K1','O1','P1','K2','M4','MS4']]
 
-   # HWS = MSL + M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2
-   # LWS = MSL - (M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2)
-   # MHWS = MSL + M2 + S2
-   # MLWS = MSL - (M2 + S2)
-   # MHWL = MSL + M2 + K1 + O1
-    #MLWL = MSL - (M2 + K1 + O1)
-    #HHWL = MSL + M2 + S2 + K1 + O1 + P1 + K2
-    #LLWL = MSL - (M2 + S2 + K1 + O1 + P1 + K2)
-  #Tunggang_Pasang = HWS - LWS
-  #Formzahl = (K1 + O1) / (M2 + S2) if (M2 + S2) != 0 else 0
+     HWS = MSL + M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2
+     LWS = MSL - (M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2)
+     MHWS = MSL + M2 + S2
+     MLWS = MSL - (M2 + S2)
+     MHWL = MSL + M2 + K1 + O1
+     MLWL = MSL - (M2 + K1 + O1)
+     HHWL = MSL + M2 + S2 + K1 + O1 + P1 + K2
+     LLWL = MSL - (M2 + S2 + K1 + O1 + P1 + K2)
+    Tunggang_Pasang = HWS - LWS
+    Formzahl = (K1 + O1) / (M2 + S2) if (M2 + S2) != 0 else 0
 
     if Formzahl > 3.0:
         jenis_pasang_surut = "Pasang Surut Harian Tunggal (Diurnal)"
