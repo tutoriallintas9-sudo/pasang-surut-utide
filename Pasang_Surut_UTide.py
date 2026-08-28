@@ -50,7 +50,7 @@ run_analysis = st.button("Analisa Pasang Surut")
 if uploaded_file is not None and run_analysis:
     df = pd.read_excel(uploaded_file)
     bfill_imputed = df.copy(deep=True)
-    bfill_imputed.fillna(method='bfill', inplace=True)
+    bfill_imputed = bfill_imputed.bfill()
     tanggal = pd.to_datetime(bfill_imputed['Tanggal'])
     sensor = np.array(bfill_imputed['Elevasi'])
 
