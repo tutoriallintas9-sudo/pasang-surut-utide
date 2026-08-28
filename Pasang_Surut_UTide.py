@@ -84,21 +84,6 @@ if uploaded_file is not None and run_analysis:
         'Phase CI [°]': '{:.4f}'
     }))
 
-    MSL = np.mean(sensor)
-    amp = lambda x: decompose_utide['A'][decompose_utide['name'] == x][0] if x in decompose_utide['name'] else 0
-    M2, S2, N2, K1, O1, P1, K2, M4, MS4 = [amp(x) for x in ['M2','S2', 'N2', 'K1','O1','P1','K2','M4','MS4']]
-
-    HWS = MSL + M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2
-    LWS = MSL - (M2 + S2 + K1 + O1 + P1 + K2 + M4 + MS4 + N2)
-    MHWS = MSL + M2 + S2
-    MLWS = MSL - (M2 + S2)
-    MHWL = MSL + M2 + K1 + O1
-    MLWL = MSL - (M2 + K1 + O1)
-    HHWL = MSL + M2 + S2 + K1 + O1 + P1 + K2
-    LLWL = MSL - (M2 + S2 + K1 + O1 + P1 + K2)
-    Tunggang_Pasang = HWS - LWS
-    Formzahl = (K1 + O1) / (M2 + S2) if (M2 + S2) != 0 else 0
-
     if Formzahl > 3.0:
         jenis_pasang_surut = "Pasang Surut Harian Tunggal (Diurnal)"
     elif 1.5 < Formzahl <= 3.0:
@@ -107,19 +92,6 @@ if uploaded_file is not None and run_analysis:
         jenis_pasang_surut = "Pasang Surut Campuran Condong ke Harian Ganda"
     else:
         jenis_pasang_surut = "Pasang Surut Harian Ganda (Semidiurnal)"
-
-    df_elevasi = pd.DataFrame({
-        'Parameter': [
-            'MSL', 'HWS', 'LWS', 'MHWS', 'MLWS',
-            'MHWL', 'MLWL', 'HHWL', 'LLWL', 'Tunggang Pasang',
-            'Formzahl', 'Jenis Pasut'
-        ],
-        'Elevasi (m)': [
-            MSL, HWS, LWS, MHWS, MLWS,
-            MHWL, MLWL, HHWL, LLWL, Tunggang_Pasang,
-            Formzahl, jenis_pasang_surut
-        ]
-    })
 
     fig_formzahl, ax_formzahl = plt.subplots(figsize=(6, 4))
     ax_formzahl.bar(["Formzahl"], [Formzahl], color='orange')
@@ -142,30 +114,8 @@ if uploaded_file is not None and run_analysis:
     - 1.50 < F ≤ 3.00 : Pasang surut campuran condong ke harian tunggal *(Mixed, Predominantly Diurnal)*  
     - F > 3.00 : Pasang surut harian tunggal *(Diurnal)*
     """)
-    st.header("5. Tabel Perhitungan Elevasi Penting (Pendekatan Sederhana Penjumlahan Amplitudo))")
-    st.dataframe(df_elevasi.style.format({
-        'Elevasi (m)': lambda x: f"{x:.2f}" if isinstance(x, (int,float)) else x
-    }))
 
-    fig_elevasi, ax_elevasi = plt.subplots(figsize=(17, 6))
-    ax_elevasi.plot(tanggal, sensor, label='Pasang Surut', color='blue')
-    ax_elevasi.axhline(MSL, color='orange', linestyle='-', label='MSL')
-    ax_elevasi.axhline(HHWL, color='gray', linestyle='--', label='HHWL')
-    ax_elevasi.axhline(LLWL, color='gold', linestyle='--', label='LLWL')
-    ax_elevasi.axhline(MHWL, color='green', linestyle='--', label='MHWL')
-    ax_elevasi.axhline(MLWL, color='lime', linestyle='--', label='MLWL')
-    ax_elevasi.axhline(HWS, color='black', linestyle=':', label='HWS')
-    ax_elevasi.axhline(LWS, color='brown', linestyle=':', label='LWS')
-    ax_elevasi.axhline(MHWS, color='purple', linestyle='-.', label='MHWS')
-    ax_elevasi.axhline(MLWS, color='pink', linestyle='-.', label='MLWS')
-    ax_elevasi.set_title('Grafik Pasang Surut + Elevasi Penting')
-    ax_elevasi.set_ylabel('Tinggi Permukaan Air (m)')
-    ax_elevasi.legend(loc='center left', bbox_to_anchor=(1.01, 0.5), frameon=False)
-    ax_elevasi.grid(True)
-    st.header("Grafik Pasang Surut dengan Elevasi Penting")
-    st.pyplot(fig_elevasi)
-
-    st.header("6. Prediksi Pasang Surut")
+    st.header("5. Prediksi Pasang Surut")
     timepred_UTIDE = pd.date_range(start=start_pred, end=end_pred, freq=interval)
     tidepred_UTIDE = reconstruct(timepred_UTIDE, decompose_utide, verbose=True)
     h_out_predutide = tidepred_UTIDE.h
@@ -255,22 +205,19 @@ if uploaded_file is not None and run_analysis:
     )
 
 
-    st.header("7. Ringkasan Analisis")
+    st.header("6. Ringkasan Analisis")
     st.markdown(f"""
 - **Formzahl**: {Formzahl:.2f}  
 - **Jenis Pasang Surut**: {jenis_pasang_surut}  
 - **RMSE**: {RMSE_UTIDE:.2f}  
 - **R²**: {R_square:.2f}  
-- **MSL**: {MSL:.2f} m  
-- **HWS**: {HWS:.2f} m  
-- **LWS**: {LWS:.2f} m
 - **MSL Prediksi**: {MSL_rec:.2f} m
 - **HWS Prediksi**: {HWS_rec:.2f} m 
 - **LWS Prediksi**: {LWS_rec:.2f} m 
 - **Tunggang Pasang**: {Tunggang_Pasang:.2f} m  
 """)
 
-    st.header("8. Ekspor Hasil")
+    st.header("7. Ekspor Hasil")
 
     def fig_to_bytes(fig):
         buf = io.BytesIO()
@@ -284,16 +231,14 @@ if uploaded_file is not None and run_analysis:
             zipf.writestr("Grafik_Formzahl.jpg", fig_to_bytes(fig_formzahl))
             zipf.writestr("Grafik_Observasi_vs_Prediksi.jpg", fig_to_bytes(fig_obs_pred))
             zipf.writestr("Grafik_Residual.jpg", fig_to_bytes(fig_residual))
-            zipf.writestr("Grafik_Elevasi_Penting.jpg", fig_to_bytes(fig_elevasi))
             zipf.writestr("Grafik_Prediksi.jpg", fig_to_bytes(fig_pred))
         buffer.seek(0)
         st.download_button("📈 Unduh Semua Grafik JPG (ZIP)", data=buffer, file_name="Grafik_Pasang_Surut.zip", mime="application/zip")
 
     st.download_button("📄 Unduh Komponen Harmonik", DatFrame_UTide.to_csv(index=False), file_name="Komponen_Harmonik.csv", mime="text/csv")
-    st.download_button("📄 Unduh Elevasi Penting", df_elevasi.to_csv(index=False), file_name="Elevasi_Penting.csv", mime="text/csv")
     st.download_button("📅 Unduh Data Prediksi", df_prediksi.to_csv(index=False), file_name="Prediksi_Pasang.csv", mime="text/csv")
 
 # Tanda tangan
 st.markdown("---")
-st.markdown("**by : Tri Arwadi modified ChatGPT and Blackbox**") 
+st.markdown("**by :SEGARAGIS**") 
 
