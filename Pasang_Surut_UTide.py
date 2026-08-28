@@ -20,11 +20,10 @@ import zipfile
 
 st.set_page_config(
     page_title="Analisa Pasang Surut - UTIDE",
-    page_icon="🌊",
     layout="wide"
 )
 
-st.title("🌊 Aplikasi Analisa Pasang Surut")
+st.title(" Aplikasi Analisa Pasang Surut")
 
 
 # ============================================================
