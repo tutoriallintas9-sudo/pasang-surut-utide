@@ -125,6 +125,14 @@ run_analysis = st.button(
 
 if uploaded_file is not None and run_analysis:
 
+     if latitude == 0.000000:
+
+     st.warning(
+         "⚠️ Latitude wajib diinput untuk faktor koreksi nodal UTide."
+     )
+     st.stop()
+
+
     # ========================================================
     # BACA DATA EXCEL
     # ========================================================
