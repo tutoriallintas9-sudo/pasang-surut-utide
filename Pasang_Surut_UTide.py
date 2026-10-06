@@ -56,7 +56,10 @@ latitude = st.number_input(
     value=0.000000,
     format="%.6f"
 )
-
+st.markdown(
+    "<small><span style='color:red;'>* Latitude wajib diinput untuk faktor koreksi nodal UTide</span></small>",
+    unsafe_allow_html=True
+)
 
 # ============================================================
 # PERIODE PREDIKSI
