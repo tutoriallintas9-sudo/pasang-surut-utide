@@ -777,15 +777,21 @@ if uploaded_file is not None and run_analysis:
         "6. Ringkasan Analisis"
     )
 
-    st.markdown(f"""
-    - **Formzahl:** {Formzahl:.2f}
-    - **Jenis Pasang Surut:** {jenis_pasang_surut}
-    - **RMSE:** {RMSE_UTIDE:.2f} m
-    - **R²:** {R_square:.2f}
-    - **MSL Prediksi:** {MSL_rec:.2f} m
-    - **HWS Prediksi:** {HWS_rec:.2f} m
-    - **LWS Prediksi:** {LWS_rec:.2f} m
-    """)
+st.markdown(f"""
+- **Formzahl**: {Formzahl:.2f}  
+- **Jenis Pasang Surut**: {jenis_pasang_surut}  
+- **RMSE**: {RMSE_UTIDE:.2f}  
+- **R²**: {R_square:.2f}  
+- **MSL**: {MSL:.2f} m  
+- **HWS**: {HWS:.2f} m  
+- **LWS**: {LWS:.2f} m
+- **MSL Prediksi**: {MSL_rec:.2f} m
+- **HWS Prediksi**: {HWS_rec:.2f} m 
+- **Waktu HWS Prediksi:** {waktu_HWS_rec.strftime("%d-%m-%Y %H:%M")}
+- **LWS Prediksi**: {LWS_rec:.2f} m 
+- **Waktu LWS Prediksi:** {waktu_LWS_rec.strftime("%d-%m-%Y %H:%M")}
+- **Tunggang Pasang**: {Tunggang_Pasang:.2f} m  
+""")
 
 
     # ========================================================
