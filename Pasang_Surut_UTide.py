@@ -106,6 +106,52 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+```python
+# ==============================
+# MEDIA SOSIAL
+# ==============================
+
+st.markdown(
+    """
+    <style>
+    .social-media {
+        text-align: center;
+        margin-top: -10px;
+        margin-bottom: 25px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .social-media a {
+        text-decoration: none;
+        font-weight: 700;
+        margin: 0 8px;
+    }
+
+    .social-media a:hover {
+        text-decoration: underline;
+    }
+    </style>
+
+    <div class="social-media">
+        Follow kami:
+        <a href="https://www.tiktok.com/@segaragis" target="_blank">
+            🎵 TikTok @segaragis
+        </a>
+        |
+        <a href="https://www.instagram.com/segaragis.id/" target="_blank">
+            📷 Instagram @segaragis.id
+        </a>
+        |
+        <a href="https://www.youtube.com/@segaragis" target="_blank">
+            ▶️ YouTube @segaragis
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+```
+
 
 # ============================================================
 # 1. UNGGAH DATA
