@@ -135,15 +135,15 @@ st.markdown(
     <div class="social-media">
         Follow kami:
         <a href="https://www.tiktok.com/@segaragis" target="_blank">
-            🎵 TikTok @segaragis
+            TikTok : @segaragis
         </a>
         |
         <a href="https://www.instagram.com/segaragis.id/" target="_blank">
-            📷 Instagram @segaragis.id
+            Instagram : @segaragis.id
         </a>
         |
         <a href="https://www.youtube.com/@segaragis" target="_blank">
-            ▶️ YouTube @segaragis
+          YouTube : @segaragis
         </a>
     </div>
     """,
