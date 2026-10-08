@@ -19,11 +19,37 @@ import zipfile
 # ============================================================
 
 st.set_page_config(
-    page_title="Analisa Pasang Surut - UTIDE",
+    page_title="Analisa Pasang Surut",
     layout="wide"
 )
 
-st.title(" Aplikasi Analisa Pasang Surut")
+st.markdown(
+    """
+    <style>
+    .judul-aplikasi {
+        font-size: 36px;
+        font-weight: 800;
+        text-align: center;
+        background: linear-gradient(
+            90deg,
+            #0066B3 0%,
+            #0088CC 30%,
+            #FFD900 65%,
+            #F5A000 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 20px;
+    }
+    </style>
+
+    <div class="judul-aplikasi">
+        Aplikasi Analisa Pasang Surut
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # ============================================================
