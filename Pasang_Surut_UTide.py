@@ -106,7 +106,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-```python
 # ==============================
 # MEDIA SOSIAL
 # ==============================
@@ -150,8 +149,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-```
-
 
 # ============================================================
 # 1. UNGGAH DATA
