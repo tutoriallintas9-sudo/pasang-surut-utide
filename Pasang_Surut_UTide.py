@@ -30,7 +30,7 @@ st.markdown(
         width: 100%;
         overflow: hidden;
         white-space: nowrap;
-        font-size: 13px;
+        font-size: 18px;
         font-weight: 600;
         margin-bottom: 8px;
     }
@@ -38,7 +38,7 @@ st.markdown(
     .running-text span {
         display: inline-block;
         padding-left: 100%;
-        animation: berjalan 15s linear infinite;
+        animation: berjalan 30s linear infinite;
     }
 
     @keyframes berjalan {
