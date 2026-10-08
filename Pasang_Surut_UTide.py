@@ -623,7 +623,7 @@ if uploaded_file is not None and run_analysis:
         "4. Visualisasi Formzahl dan Klasifikasi Pasang Surut"
     )
 
-    col_grafik, col_spacer, col_keterangan = st.columns([0.8,  0.3, 1])
+    col_grafik, col_spacer, col_keterangan = st.columns([0.8,  0.2, 1])
 
     # =========================
     # GRAFIK
