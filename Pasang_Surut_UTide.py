@@ -566,6 +566,14 @@ if uploaded_file is not None and run_analysis:
         h_out_predutide
     )
 
+    # Index waktu HWS dan LWS
+    idx_HWS = np.argmax(h_out_predutide)
+    idx_LWS = np.argmin(h_out_predutide)
+    
+    # Waktu terjadinya HWS dan LWS
+    waktu_HWS = timepred_UTIDE[idx_HWS]
+    waktu_LWS = timepred_UTIDE[idx_LWS]
+    
     # Tunggang Pasang Prediksi
     Tunggang_Pasang_rec = HWS_rec - LWS_rec
 
@@ -786,7 +794,9 @@ if uploaded_file is not None and run_analysis:
     - **R²**: {R_square:.2f}  
     - **MSL Prediksi**: {MSL_rec:.2f} m
     - **HWS Prediksi**: {HWS_rec:.2f} m 
+    - **Waktu HWS**: {waktu_HWS.strftime("%d-%m-%Y %H:%M")}
     - **LWS Prediksi**: {LWS_rec:.2f} m 
+    - **Waktu LWS**: {waktu_LWS.strftime("%d-%m-%Y %H:%M")} 
     - **Tunggang Pasang**: {Tunggang_Pasang_rec:.2f} m  
     """)
 
