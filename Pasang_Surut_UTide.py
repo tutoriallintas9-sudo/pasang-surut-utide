@@ -26,54 +26,38 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    .running-text-container {
+    .running-text {
         width: 100%;
         overflow: hidden;
         white-space: nowrap;
-        margin-bottom: 10px;
-    }
-
-    .running-text {
-        display: inline-block;
-        padding-left: 100%;
-        animation: running 18s linear infinite;
         font-size: 13px;
         font-weight: 600;
+        margin-bottom: 8px;
     }
 
-    .running-text a {
-        color: #0066B3;
-        font-weight: 700;
-        text-decoration: none;
+    .running-text span {
+        display: inline-block;
+        padding-left: 100%;
+        animation: berjalan 15s linear infinite;
     }
 
-    .running-text a:hover {
-        text-decoration: underline;
-    }
-
-    @keyframes running {
-        from {
-            transform: translateX(0);
+    @keyframes berjalan {
+        0% {
+            transform: translateX(0%);
         }
-        to {
+        100% {
             transform: translateX(-100%);
         }
     }
     </style>
 
-    <div class="running-text-container">
-        <div class="running-text">
-            ❤️ Support kami dengan follow akun kami
-            &nbsp; | &nbsp;
-            TikTok:
-            <a href="https://www.tiktok.com/@segaragis" target="_blank">@segaragis</a>
-            &nbsp; | &nbsp;
-            Instagram:
-            <a href="https://www.instagram.com/segaragis.id/" target="_blank">@segaragis.id</a>
-            &nbsp; | &nbsp;
-            YouTube:
-            <a href="https://www.youtube.com/@segaragis" target="_blank">@segaragis</a>
-        </div>
+    <div class="running-text">
+        <span>
+            ❤️ Support kami dengan follow akun kami &nbsp; | &nbsp;
+            TikTok: @segaragis &nbsp; | &nbsp;
+            Instagram: @segaragis &nbsp; | &nbsp;
+            YouTube: @segaragis
+        </span>
     </div>
     """,
     unsafe_allow_html=True
