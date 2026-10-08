@@ -27,7 +27,7 @@ st.markdown(
     """
     <style>
     .judul-aplikasi {
-        font-size: 36px;
+        font-size: 42px;
         font-weight: 800;
         text-align: center;
         background: linear-gradient(
