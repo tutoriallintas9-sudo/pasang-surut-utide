@@ -566,6 +566,8 @@ if uploaded_file is not None and run_analysis:
         h_out_predutide
     )
 
+    # Tunggang Pasang Prediksi
+    Tunggang_Pasang_rec = HWS_rec - LWS_rec
 
     # ========================================================
     # GRAFIK PREDIKSI
