@@ -23,6 +23,45 @@ st.set_page_config(
     layout="wide"
 )
 
+st.markdown(
+    """
+    <style>
+    .running-text {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .running-text span {
+        display: inline-block;
+        padding-left: 100%;
+        animation: berjalan 15s linear infinite;
+    }
+
+    @keyframes berjalan {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+    </style>
+
+    <div class="running-text">
+        <span>
+            ❤️ Support kami dengan follow akun kami &nbsp; | &nbsp;
+            TikTok: @segaragis &nbsp; | &nbsp;
+            Instagram: @segaragis &nbsp; | &nbsp;
+            YouTube: @segaragis
+        </span>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown(
     """
