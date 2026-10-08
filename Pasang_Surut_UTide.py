@@ -23,6 +23,7 @@ st.set_page_config(
     layout="wide"
 )
 
+
 st.markdown(
     """
     <style>
@@ -46,21 +47,36 @@ st.markdown(
     """
     <style>
     .judul-aplikasi {
-        font-size: 42px;
+        font-size: 48px;
         font-weight: 800;
         text-align: center;
         background: linear-gradient(
             90deg,
             #0066B3 0%,
-            #0088CC 30%,
+            #0088CC 25%,
             #FFD900 65%,
-            #F5A000 100%
+            #F5A000 75%
         );
+        
+        background-size: 200% auto;
+        
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        animation: kilau 10s linear infinite;
         margin-bottom: 20px;
     }
+    
+    @keyframes kilau {
+        0% {
+            background-position: 200% center;
+        }
+
+        100% {
+            background-position: -200% center;
+        }
+    }
+    
     </style>
 
     <div class="judul-aplikasi">
@@ -75,93 +91,177 @@ st.markdown(
 # 1. UNGGAH DATA
 # ============================================================
 
-st.header("1. Unggah Data Pasang Surut")
-
-st.markdown("""
-**Format file Excel yang diupload harus memiliki minimal 2 kolom dengan nama:**
-
-- `Tanggal` : Tanggal dan waktu pengamatan
-- `Elevasi` : Tinggi muka air (meter)
-""")
-
-uploaded_file = st.file_uploader(
-    "Pilih file Excel",
-    type=["xlsx"]
-)
-
-
-# ============================================================
-# INPUT LATITUDE
-# ============================================================
-
-latitude = st.number_input(
-    "Masukkan nilai latitude lokasi pengamatan (dalam derajat desimal):",
-    min_value=-90.0,
-    max_value=90.0,
-    value=0.000000,
-    format="%.6f"
-)
-st.markdown(
-    "<small><span style='color:red;'>* Latitude wajib diinput untuk faktor koreksi nodal UTide</span></small>",
-    unsafe_allow_html=True
+col_main, col_info = st.columns(
+    [3.5, 1],
+    gap="large"
 )
 
 # ============================================================
-# PERIODE PREDIKSI
+# KOLOM KIRI
 # ============================================================
 
-st.markdown("### Periode dan Interval Prediksi Pasang Surut")
-
-start_pred = st.date_input(
-    "Tanggal Mulai",
-    datetime(2025, 1, 1)
-)
-
-end_pred = st.date_input(
-    "Tanggal Akhir",
-    datetime(2025, 6, 30)
-)
+with col_main:
 
 
-# ============================================================
-# INTERVAL PREDIKSI
-# ============================================================
+    st.header("1. Unggah Data Pasang Surut")
 
-interval_options = {
-    "6 Jam": "6h",
-    "3 Jam": "3h",
-    "1 Jam": "1h",
-    "30 Menit": "30min",
-    "15 Menit": "15min"
-}
+    st.markdown("""
+    **Format file Excel yang diupload harus memiliki minimal 2 kolom dengan nama:**
 
-interval_label = st.selectbox(
-    "Pilih Interval Prediksi",
-    list(interval_options.keys()),
-    index=1
-)
+    - `Tanggal` : Tanggal dan waktu pengamatan
+    - `Elevasi` : Tinggi muka air (meter)
+    """)
 
-interval = interval_options[interval_label]
+    uploaded_file = st.file_uploader(
+        "Pilih file Excel",
+        type=["xlsx"]
+    )
 
 
-# ============================================================
-# VALIDASI TANGGAL
-# ============================================================
+    # ============================================================
+    # INPUT LATITUDE
+    # ============================================================
 
-if start_pred >= end_pred:
-    st.error(
-        "Tanggal mulai harus lebih awal dari tanggal akhir."
+    latitude = st.number_input(
+        "Masukkan nilai latitude lokasi pengamatan (dalam derajat desimal):",
+        min_value=-90.0,
+        max_value=90.0,
+        value=0.000000,
+        format="%.6f"
+    )
+    st.markdown(
+        "<small><span style='color:red;'>* Latitude wajib diinput untuk faktor koreksi nodal UTide</span></small>",
+        unsafe_allow_html=True
+    )
+
+    # ============================================================
+    # PERIODE PREDIKSI
+    # ============================================================
+
+    st.markdown("### Periode dan Interval Prediksi Pasang Surut")
+
+    start_pred = st.date_input(
+        "Tanggal Mulai",
+        datetime(2025, 1, 1)
+    )
+
+    end_pred = st.date_input(
+        "Tanggal Akhir",
+        datetime(2025, 6, 30)
+    )
+
+
+    # ============================================================
+    # INTERVAL PREDIKSI
+    # ============================================================
+
+    interval_options = {
+        "6 Jam": "6h",
+        "3 Jam": "3h",
+        "1 Jam": "1h",
+        "30 Menit": "30min",
+        "15 Menit": "15min"
+    }
+
+    interval_label = st.selectbox(
+        "Pilih Interval Prediksi",
+        list(interval_options.keys()),
+        index=1
+    )
+
+    interval = interval_options[interval_label]
+
+
+    # ============================================================
+    # VALIDASI TANGGAL
+    # ============================================================
+
+    if start_pred >= end_pred:
+        st.error(
+            "Tanggal mulai harus lebih awal dari tanggal akhir."
+        )
+
+
+    # ============================================================
+    # TOMBOL ANALISA
+    # ============================================================
+
+    run_analysis = st.button(
+        "🔍 Analisa Pasang Surut",
+        type="primary"
     )
 
 
 # ============================================================
-# TOMBOL ANALISA
+# KOLOM KANAN - KETERANGAN
 # ============================================================
 
-run_analysis = st.button(
-    "🔍 Analisa Pasang Surut",
-    type="primary"
-)
+with col_info:
+
+    st.markdown(
+        """
+        <div class="kotak-keterangan">
+
+        <h3>ℹ️ Keterangan</h3>
+
+        <p>
+        Aplikasi ini digunakan untuk melakukan analisis
+        pasang surut menggunakan metode harmonik UTide.
+        </p>
+
+        <p>
+        <b>Data yang diperlukan:</b><br>
+        • Tanggal<br>
+        • Elevasi<br>
+        • Latitude lokasi pengamatan
+        </p>
+
+        <p>
+        <b>Parameter analisis:</b><br>
+        • Periode prediksi<br>
+        • Interval prediksi<br>
+        • Faktor koreksi nodal
+        </p>
+
+        <p>
+        Hasil analisis meliputi komponen harmonik,
+        Formzahl, klasifikasi pasang surut,
+        prediksi, RMSE, R², MSL, HWS, dan LWS.
+        </p>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("### 📊 Contoh Format Excel")
+
+    contoh_data = pd.DataFrame({
+        "Tanggal": [
+            "01-07-25 0:00",
+            "01-07-25 1:00",
+            "01-07-25 2:00",
+            "01-07-25 3:00",
+            "01-07-25 4:00"
+        ],
+        "Elevasi": [
+            140,
+            136,
+            132,
+            128,
+            126
+        ]
+    })
+
+    st.dataframe(
+        contoh_data,
+        use_container_width=True,
+        hide_index=True
+    )
+
+    st.caption(
+        "Nama kolom harus: Tanggal dan Elevasi."
+    )
 
 
 # ============================================================
@@ -282,7 +382,7 @@ if uploaded_file is not None and run_analysis:
     st.header("2. Grafik Pasang Surut Observasi")
 
     fig_obs, ax_obs = plt.subplots(
-        figsize=(17, 8)
+        figsize=(18, 8)
     )
 
     ax_obs.plot(
@@ -453,7 +553,7 @@ if uploaded_file is not None and run_analysis:
     # ========================================================
 
     fig_formzahl, ax_formzahl = plt.subplots(
-        figsize=(7, 5)
+        figsize=(6, 4)
     )
 
     ax_formzahl.bar(
@@ -523,28 +623,46 @@ if uploaded_file is not None and run_analysis:
         "4. Visualisasi Formzahl dan Klasifikasi Pasang Surut"
     )
 
-    st.pyplot(
-        fig_formzahl
-    )
+    col_grafik, col_spacer, col_keterangan = st.columns([0.8,  0.3, 1])
 
-    st.markdown(
-        f"**Nilai Formzahl:** {Formzahl:.4f}"
-    )
+    # =========================
+    # GRAFIK
+    # =========================
 
-    st.markdown(
-        f"**Jenis Pasang Surut:** {jenis_pasang_surut}"
-    )
+    with col_grafik:
 
-    st.markdown("""
-    **Kategori Formzahl (F):**
+        st.pyplot(
+            fig_formzahl,
+            use_container_width=True
+        )
 
-    - F ≤ 0.25 : Pasang surut harian ganda *(Semidiurnal)*
-    - 0.25 < F ≤ 1.50 : Pasang surut campuran condong ke harian ganda
-      *(Mixed, Predominantly Semidiurnal)*
-    - 1.50 < F ≤ 3.00 : Pasang surut campuran condong ke harian tunggal
-      *(Mixed, Predominantly Diurnal)*
-    - F > 3.00 : Pasang surut harian tunggal *(Diurnal)*
-    """)
+
+    # =========================
+    # KETERANGAN
+    # =========================
+
+    with col_keterangan:
+
+        st.markdown(
+            f"### Hasil Analisis"
+        )
+
+        st.markdown(
+            f"**Nilai Formzahl:** {Formzahl:.4f}"
+        )
+
+        st.markdown(
+            f"**Jenis Pasang Surut:** {jenis_pasang_surut}"
+        )
+
+        st.markdown("""
+        ### Kategori Formzahl
+
+        - **F ≤ 0.25** : Pasang surut harian ganda *(Semidiurnal)*
+        - **0.25 < F ≤ 1.50** : Campuran condong ke harian ganda
+        - **1.50 < F ≤ 3.00** : Campuran condong ke harian tunggal
+        - **F > 3.00** : Pasang surut harian tunggal *(Diurnal)*
+        """)
 
 
     # ========================================================
