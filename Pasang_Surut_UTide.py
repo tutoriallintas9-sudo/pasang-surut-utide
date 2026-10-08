@@ -26,6 +26,24 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+
+    .stApp {
+        background: linear-gradient(
+            135deg,
+            #EAF7FF 0%,
+            #FFFFFF 50%,
+            #FFF8D6 100%
+        );
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <style>
     .running-text {
         width: 100%;
         overflow: hidden;
