@@ -912,5 +912,24 @@ if uploaded_file is not None and run_analysis:
 st.markdown("---")
 
 st.markdown(
-    "**by : SEGARAGIS**"
+    """
+    <div style="text-align:center; font-size:18px; font-weight:bold;">
+        by :
+        <span style="
+            background: linear-gradient(
+                90deg,
+                #0066B3 0%,
+                #008FD5 35%,
+                #FFD400 65%,
+                #F5A400 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        ">
+            SEGARAGIS
+        </span>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
