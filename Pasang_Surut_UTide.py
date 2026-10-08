@@ -22,6 +22,30 @@ st.set_page_config(
     page_title="Analisa Pasang Surut",
     layout="wide"
 )
+st.markdown(
+    """
+    <style>
+
+    .stApp {
+        background:
+            radial-gradient(
+                circle at 10% 10%,
+                rgba(0, 136, 204, 0.12),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 90% 90%,
+                rgba(255, 217, 0, 0.15),
+                transparent 30%
+            ),
+            #FFFFFF;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 st.markdown(
     """
