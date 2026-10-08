@@ -30,7 +30,7 @@ st.markdown(
         width: 100%;
         overflow: hidden;
         white-space: nowrap;
-        font-size: 18px;
+        font-size: 13px;
         font-weight: 600;
         margin-bottom: 8px;
     }
@@ -38,7 +38,16 @@ st.markdown(
     .running-text span {
         display: inline-block;
         padding-left: 100%;
-        animation: berjalan 30s linear infinite;
+        animation: berjalan 15s linear infinite;
+    }
+
+    .running-text a {
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .running-text a:hover {
+        text-decoration: underline;
     }
 
     @keyframes berjalan {
@@ -53,10 +62,27 @@ st.markdown(
 
     <div class="running-text">
         <span>
-            ❤️ Support kami dengan follow akun kami &nbsp; | &nbsp;
-            TikTok: @segaragis &nbsp; | &nbsp;
-            Instagram: @segaragis &nbsp; | &nbsp;
-            YouTube: @segaragis
+            ❤️ Support kami dengan follow akun kami
+            &nbsp; | &nbsp;
+
+            TikTok:
+            <a href="https://www.tiktok.com/@segaragis" target="_blank">
+                @segaragis
+            </a>
+
+            &nbsp; | &nbsp;
+
+            Instagram:
+            <a href="https://www.instagram.com/segaragis.id/" target="_blank">
+                @segaragis.id
+            </a>
+
+            &nbsp; | &nbsp;
+
+            YouTube:
+            <a href="https://www.youtube.com/@segaragis" target="_blank">
+                @segaragis
+            </a>
         </span>
     </div>
     """,
