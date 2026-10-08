@@ -71,7 +71,7 @@ st.markdown(
 
     <div class="running-text">
         <span>
-            ❤️ Support kami dengan follow akun kami &nbsp; | &nbsp;
+            ❤️ Support kami dengan share dan follow akun kami &nbsp; | &nbsp;
             TikTok: @segaragis &nbsp; | &nbsp;
             Instagram: @segaragis &nbsp; | &nbsp;
             YouTube: @segaragis
