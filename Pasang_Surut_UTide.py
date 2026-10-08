@@ -48,7 +48,7 @@ st.markdown(
         width: 100%;
         overflow: hidden;
         white-space: nowrap;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 600;
         margin-bottom: 8px;
     }
