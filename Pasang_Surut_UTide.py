@@ -782,9 +782,6 @@ if uploaded_file is not None and run_analysis:
     - **Jenis Pasang Surut**: {jenis_pasang_surut}  
     - **RMSE**: {RMSE_UTIDE:.2f}  
     - **R²**: {R_square:.2f}  
-    - **MSL**: {MSL:.2f} m  
-    - **HWS**: {HWS:.2f} m  
-    - **LWS**: {LWS:.2f} m
     - **MSL Prediksi**: {MSL_rec:.2f} m
     - **HWS Prediksi**: {HWS_rec:.2f} m 
     - **LWS Prediksi**: {LWS_rec:.2f} m 
