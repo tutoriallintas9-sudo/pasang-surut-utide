@@ -913,8 +913,8 @@ st.markdown("---")
 
 st.markdown(
     """
-    <div style="text-align:center; font-size:18px; font-weight:bold;">
-        by :
+    <div style="text-align:center; font-size:34px; font-weight:bold;">
+        BY :  
         <span style="
             background: linear-gradient(
                 90deg,
