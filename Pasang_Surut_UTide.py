@@ -787,7 +787,7 @@ if uploaded_file is not None and run_analysis:
     - **MSL Prediksi**: {MSL_rec:.2f} m
     - **HWS Prediksi**: {HWS_rec:.2f} m 
     - **LWS Prediksi**: {LWS_rec:.2f} m 
-    - **Tunggang Pasang**: {Tunggang_Pasang:.2f} m  
+    - **Tunggang Pasang**: {Tunggang_Pasang_rec:.2f} m  
     """)
 
 
