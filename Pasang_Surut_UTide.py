@@ -26,64 +26,54 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    .running-text {
+    .running-text-container {
         width: 100%;
         overflow: hidden;
         white-space: nowrap;
-        font-size: 13px;
-        font-weight: 600;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
     }
 
-    .running-text span {
+    .running-text {
         display: inline-block;
         padding-left: 100%;
-        animation: berjalan 15s linear infinite;
+        animation: running 18s linear infinite;
+        font-size: 13px;
+        font-weight: 600;
     }
 
     .running-text a {
+        color: #0066B3;
+        font-weight: 700;
         text-decoration: none;
-        font-weight: bold;
     }
 
     .running-text a:hover {
         text-decoration: underline;
     }
 
-    @keyframes berjalan {
-        0% {
-            transform: translateX(0%);
+    @keyframes running {
+        from {
+            transform: translateX(0);
         }
-        100% {
+        to {
             transform: translateX(-100%);
         }
     }
     </style>
 
-    <div class="running-text">
-        <span>
+    <div class="running-text-container">
+        <div class="running-text">
             ❤️ Support kami dengan follow akun kami
             &nbsp; | &nbsp;
-
             TikTok:
-            <a href="https://www.tiktok.com/@segaragis" target="_blank">
-                @segaragis
-            </a>
-
+            <a href="https://www.tiktok.com/@segaragis" target="_blank">@segaragis</a>
             &nbsp; | &nbsp;
-
             Instagram:
-            <a href="https://www.instagram.com/segaragis.id/" target="_blank">
-                @segaragis.id
-            </a>
-
+            <a href="https://www.instagram.com/segaragis.id/" target="_blank">@segaragis.id</a>
             &nbsp; | &nbsp;
-
             YouTube:
-            <a href="https://www.youtube.com/@segaragis" target="_blank">
-                @segaragis
-            </a>
-        </span>
+            <a href="https://www.youtube.com/@segaragis" target="_blank">@segaragis</a>
+        </div>
     </div>
     """,
     unsafe_allow_html=True
